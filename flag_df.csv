@@ -1,0 +1,196 @@
+country,flag
+Afghanistan,flags/Afghanistan.pkl
+Albania,flags/Albania.pkl
+Algeria,flags/Algeria.pkl
+Andorra,flags/Andorra.pkl
+Angola,flags/Angola.pkl
+Antigua And Barbuda,flags/Antigua_And_Barbuda.pkl
+Argentina,flags/Argentina.pkl
+Armenia,flags/Armenia.pkl
+Australia,flags/Australia.pkl
+Austria,flags/Austria.pkl
+Azerbaijan,flags/Azerbaijan.pkl
+The Bahamas,flags/The_Bahamas.pkl
+Bahrain,flags/Bahrain.pkl
+Bangladesh,flags/Bangladesh.pkl
+Barbados,flags/Barbados.pkl
+Belarus,flags/Belarus.pkl
+Belgium,flags/Belgium.pkl
+Belize,flags/Belize.pkl
+Benin,flags/Benin.pkl
+Bhutan,flags/Bhutan.pkl
+Bolivia,flags/Bolivia.pkl
+Bosnia And Herzegovina,flags/Bosnia_And_Herzegovina.pkl
+Botswana,flags/Botswana.pkl
+Brazil,flags/Brazil.pkl
+Brunei,flags/Brunei.pkl
+Bulgaria,flags/Bulgaria.pkl
+Burkina Faso,flags/Burkina_Faso.pkl
+Burundi,flags/Burundi.pkl
+Cambodia,flags/Cambodia.pkl
+Cameroon,flags/Cameroon.pkl
+Canada,flags/Canada.pkl
+Cape Verde,flags/Cape_Verde.pkl
+The Central African Republic,flags/The_Central_African_Republic.pkl
+Chad,flags/Chad.pkl
+Chile,flags/Chile.pkl
+China,flags/China.pkl
+Colombia,flags/Colombia.pkl
+The Comoros,flags/The_Comoros.pkl
+The Democratic Republic Of The Congo,flags/The_Democratic_Republic_Of_The_Congo.pkl
+The Republic Of The Congo,flags/The_Republic_Of_The_Congo.pkl
+Costa Rica,flags/Costa_Rica.pkl
+Croatia,flags/Croatia.pkl
+Cuba,flags/Cuba.pkl
+Cyprus,flags/Cyprus.pkl
+The Czech Republic,flags/The_Czech_Republic.pkl
+Denmark,flags/Denmark.pkl
+Djibouti,flags/Djibouti.pkl
+Dominica,flags/Dominica.pkl
+The Dominican Republic,flags/The_Dominican_Republic.pkl
+East Timor,flags/East_Timor.pkl
+Ecuador,flags/Ecuador.pkl
+Egypt,flags/Egypt.pkl
+El Salvador,flags/El_Salvador.pkl
+Equatorial Guinea,flags/Equatorial_Guinea.pkl
+Eritrea,flags/Eritrea.pkl
+Estonia,flags/Estonia.pkl
+Eswatini,flags/Eswatini.pkl
+Ethiopia,flags/Ethiopia.pkl
+Fiji,flags/Fiji.pkl
+Finland,flags/Finland.pkl
+France,flags/France.pkl
+Gabon,flags/Gabon.pkl
+The Gambia,flags/The_Gambia.pkl
+Georgia,flags/Georgia_(Country).pkl
+Germany,flags/Germany.pkl
+Ghana,flags/Ghana.pkl
+Greece,flags/Greece.pkl
+Grenada,flags/Grenada.pkl
+Guatemala,flags/Guatemala.pkl
+Guinea,flags/Guinea.pkl
+Guinea-Bissau,flags/Guinea-Bissau.pkl
+Guyana,flags/Guyana.pkl
+Haiti,flags/Haiti.pkl
+Honduras,flags/Honduras.pkl
+Hungary,flags/Hungary.pkl
+Iceland,flags/Iceland.pkl
+India,flags/India.pkl
+Indonesia,flags/Indonesia.pkl
+Iran,flags/Iran.pkl
+Iraq,flags/Iraq.pkl
+Ireland,flags/Ireland.pkl
+Israel,flags/Israel.pkl
+Italy,flags/Italy.pkl
+Ivory Coast,flags/Ivory_Coast.pkl
+Jamaica,flags/Jamaica.pkl
+Japan,flags/Japan.pkl
+Jordan,flags/Jordan.pkl
+Kazakhstan,flags/Kazakhstan.pkl
+Kenya,flags/Kenya.pkl
+Kiribati,flags/Kiribati.pkl
+North Korea,flags/North_Korea.pkl
+South Korea,flags/South_Korea.pkl
+Kuwait,flags/Kuwait.pkl
+Kyrgyzstan,flags/Kyrgyzstan.pkl
+Laos,flags/Laos.pkl
+Latvia,flags/Latvia.pkl
+Lebanon,flags/Lebanon.pkl
+Lesotho,flags/Lesotho.pkl
+Liberia,flags/Liberia.pkl
+Libya,flags/Libya.pkl
+Liechtenstein,flags/Liechtenstein.pkl
+Lithuania,flags/Lithuania.pkl
+Luxembourg,flags/Luxembourg.pkl
+Madagascar,flags/Madagascar.pkl
+Malawi,flags/Malawi.pkl
+Malaysia,flags/Malaysia.pkl
+The Maldives,flags/The_Maldives.pkl
+Mali,flags/Mali.pkl
+Malta,flags/Malta.pkl
+The Marshall Islands,flags/The_Marshall_Islands.pkl
+Mauritania,flags/Mauritania.pkl
+Mauritius,flags/Mauritius.pkl
+Mexico,flags/Mexico.pkl
+The Federated States Of Micronesia,flags/The_Federated_States_Of_Micronesia.pkl
+Moldova,flags/Moldova.pkl
+Monaco,flags/Monaco.pkl
+Mongolia,flags/Mongolia.pkl
+Montenegro,flags/Montenegro.pkl
+Morocco,flags/Morocco.pkl
+Mozambique,flags/Mozambique.pkl
+Myanmar,flags/Myanmar.pkl
+Namibia,flags/Namibia.pkl
+Nauru,flags/Nauru.pkl
+Nepal,flags/Nepal.pkl
+The Netherlands,flags/The_Netherlands.pkl
+New Zealand,flags/New_Zealand.pkl
+Nicaragua,flags/Nicaragua.pkl
+Niger,flags/Niger.pkl
+Nigeria,flags/Nigeria.pkl
+North Macedonia,flags/North_Macedonia.pkl
+Norway,flags/Norway.pkl
+Oman,flags/Oman.pkl
+Pakistan,flags/Pakistan.pkl
+Palau,flags/Palau.pkl
+Palestine,flags/Palestine.pkl
+Panama,flags/Panama.pkl
+Papua New Guinea,flags/Papua_New_Guinea.pkl
+Paraguay,flags/Paraguay.pkl
+Peru,flags/Peru.pkl
+The Philippines,flags/The_Philippines.pkl
+Poland,flags/Poland.pkl
+Portugal,flags/Portugal.pkl
+Qatar,flags/Qatar.pkl
+Romania,flags/Romania.pkl
+Russia,flags/Russia.pkl
+Rwanda,flags/Rwanda.pkl
+Saint Kitts And Nevis,flags/Saint_Kitts_And_Nevis.pkl
+Saint Lucia,flags/Saint_Lucia.pkl
+Saint Vincent And The Grenadines,flags/Saint_Vincent_And_The_Grenadines.pkl
+Samoa,flags/Samoa.pkl
+San Marino,flags/San_Marino.pkl
+São Tomé And Príncipe,flags/São_Tomé_And_Príncipe.pkl
+Saudi Arabia,flags/Saudi_Arabia.pkl
+Senegal,flags/Senegal.pkl
+Serbia,flags/Serbia.pkl
+Seychelles,flags/Seychelles.pkl
+Sierra Leone,flags/Sierra_Leone.pkl
+Singapore,flags/Singapore.pkl
+Slovakia,flags/Slovakia.pkl
+Slovenia,flags/Slovenia.pkl
+Solomon Islands,flags/Solomon_Islands.pkl
+Somalia,flags/Somalia.pkl
+South Africa,flags/South_Africa.pkl
+South Sudan,flags/South_Sudan.pkl
+Spain,flags/Spain.pkl
+Sri Lanka,flags/Sri_Lanka.pkl
+Sudan,flags/Sudan.pkl
+Suriname,flags/Suriname.pkl
+Sweden,flags/Sweden.pkl
+Switzerland,flags/Switzerland.pkl
+Syria,flags/Syria.pkl
+Tajikistan,flags/Tajikistan.pkl
+Tanzania,flags/Tanzania.pkl
+Thailand,flags/Thailand.pkl
+Togo,flags/Togo.pkl
+Tonga,flags/Tonga.pkl
+Trinidad And Tobago,flags/Trinidad_And_Tobago.pkl
+Tunisia,flags/Tunisia.pkl
+Turkey,flags/Turkey.pkl
+Turkmenistan,flags/Turkmenistan.pkl
+Tuvalu,flags/Tuvalu.pkl
+Uganda,flags/Uganda.pkl
+Ukraine,flags/Ukraine.pkl
+The United Arab Emirates,flags/The_United_Arab_Emirates.pkl
+The United Kingdom,flags/The_United_Kingdom.pkl
+The United States,flags/The_United_States.pkl
+Uruguay,flags/Uruguay.pkl
+Uzbekistan,flags/Uzbekistan.pkl
+Vanuatu,flags/Vanuatu.pkl
+Vatican City,flags/Vatican_City.pkl
+Venezuela,flags/Venezuela.pkl
+Vietnam,flags/Vietnam.pkl
+Yemen,flags/Yemen.pkl
+Zambia,flags/Zambia.pkl
+Zimbabwe,flags/Zimbabwe.pkl
