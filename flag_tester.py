@@ -1,12 +1,5 @@
 from bs4 import BeautifulSoup
-import pandas as pd
-from PIL import Image
 import requests
-from io import BytesIO
-import numpy as np
-from skimage import measure
-import pickle
-import imagehash
 from string import ascii_lowercase
 from flag_identifier import FlagIdentifier
 
@@ -15,7 +8,15 @@ class FlagTester:
     def __init__(self):
         self.identifier = FlagIdentifier()
 
-    def test_with_cia(self, identify_flag_func):
+    def test(self, test_website = "cia", method = "mse"):
+        if test_website == "cia":
+            return self.__test_with_cia(method)
+        elif test_website == "flagpedia":
+            return self.__test_with_flagpedia(method)
+        else:
+            raise ValueError("The test website must be one of: flagpedia, cia")
+
+    def __test_with_cia(self, identify_type):
         html = requests.get("https://www.cia.gov/library/publications/the-world-factbook/docs/flagsoftheworld.html").text
         soup = BeautifulSoup(html, "lxml")
         
@@ -36,7 +37,7 @@ class FlagTester:
                 flag_img = flag.find("img").get("src").replace("..", "https://www.cia.gov/library/publications/the-world-factbook")
                 if flag_country in self.identifier.flag_df.index or "The " + flag_country in self.identifier.flag_df.index:
                     num_total += 1
-                    identified_flag = identify_flag_func(flag_img)
+                    identified_flag = self.identifier.identify(flag_img, method = identify_type)
                     if identified_flag == flag_country or identified_flag == "The " + flag_country:
                         num_correct+=1
 
@@ -45,7 +46,7 @@ class FlagTester:
 
         return num_correct / num_total
 
-    def test_with_flagpedia(self, identify_flag_func):
+    def __test_with_flagpedia(self, identify_type):
         html = requests.get("https://flagpedia.net/index").text
         soup = BeautifulSoup(html, "lxml")
         
@@ -65,7 +66,7 @@ class FlagTester:
             flag_img = "https://flagpedia.net/" + flag.find("img").get("src")
             if flag_country in self.identifier.flag_df.index or "The " + flag_country in self.identifier.flag_df.index:
                 num_total += 1
-                identified_flag = identify_flag_func(flag_img)
+                identified_flag = self.identifier.identify(flag_img, method = identify_type)
                 if identified_flag == flag_country or identified_flag == "The " + flag_country:
                     num_correct+=1
 
@@ -73,6 +74,3 @@ class FlagTester:
                     print("tested", num_total, "flags so far")
 
         return num_correct / num_total
-
-# tester = FlagTester()
-# print(tester.test_with_flagpedia(tester.identifier.identify_flag_mse))

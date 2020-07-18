@@ -1,15 +1,10 @@
 import pandas as pd
 from PIL import Image
-import requests
-from io import BytesIO
 import numpy as np
 from skimage import measure
-import pickle
 import imagehash
 from flag_util import FlagUtil
-from flag_scraping import FlagScraper
 import operator
-import sys
 
 class FlagIdentifier:
 
@@ -18,6 +13,9 @@ class FlagIdentifier:
         
         self.flag_df = pd.read_csv("flag_df.csv", index_col = "country")
         self.flag_df["flag"] = self.flag_df["flag"].apply(self.util.makeArray)
+
+    def display(self, country):
+        Image.fromarray(self.flag_df["flag"].loc[country.title()]).show()
 
     def mse(self, imageA, imageB):
         err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
@@ -106,16 +104,3 @@ class FlagIdentifier:
                 max_index = c
                 
         return max_index
-
-# test = FlagIdentifier()
-# print(test.identify_flag_mse(sys.argv[1]))
-# print(test.closest_flag(sys.argv[1]))
-# print(test.closest_flag("Italy"))
-# print(test.closest_flag("Nepal"))
-# print(test.closest_flag("The United States"))
-# print(test.closest_flag("Liberia"))
-
-# url = "https://flagpedia.net/data/flags/h80/af.png"
-# print(test.identify_flag_ssim(url))
-# print(test.identify_flag_mse(url))
-# print(test.identify_flag_hash(url))

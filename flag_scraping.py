@@ -1,10 +1,6 @@
 from bs4 import BeautifulSoup
 import pandas as pd
-from PIL import Image
 import requests
-from io import BytesIO
-import numpy as np
-import pickle
 from flag_util import FlagUtil
 
 class FlagScraper:

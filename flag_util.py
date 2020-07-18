@@ -1,5 +1,3 @@
-from bs4 import BeautifulSoup
-import pandas as pd
 from PIL import Image
 import requests
 from io import BytesIO
@@ -57,7 +55,11 @@ class FlagUtil:
         # getting the image from the url
         response = requests.get(url)
         image_bytes = BytesIO(response.content)
-        img = Image.open(image_bytes)
+
+        try:
+            img = Image.open(image_bytes)
+        except:
+            raise IOError("Unable to open up image")
         
         # converting it to RGB
         img = img.convert("RGB")
