@@ -74,5 +74,5 @@ class FlagTester:
 
         return num_correct / num_total
 
-tester = FlagTester()
-print(tester.test_with_flagpedia(tester.identifier.identify_flag_mse))
+# tester = FlagTester()
+# print(tester.test_with_flagpedia(tester.identifier.identify_flag_mse))
