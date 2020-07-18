@@ -26,19 +26,19 @@ class FlagIdentifier:
         return err
 
     def hash(self, imageA, imageB):
-        firsthash = imagehash.average_hash(imageA)
-        otherhash = imagehash.average_hash(imageB)
+        firsthash = imagehash.average_hash(Image.fromarray(imageA))
+        otherhash = imagehash.average_hash(Image.fromarray(imageB))
         return firsthash - otherhash
 
-    def ssim(self, numpy1, numpy2):
-        return measure.compare_ssim(numpy1, numpy2, multichannel = True)
+    def ssim(self, imageA, imageB):
+        return measure.compare_ssim(imageA, imageB, multichannel = True)
 
 
     def closest_flag(self, country):
-        return self.__abstract_compare_flags(country, operator.lt)
+        return self.__abstract_compare_flags(country.title(), operator.lt)
 
     def farthest_flag(self, country):
-        return self.__abstract_compare_flags(country, operator.gt)
+        return self.__abstract_compare_flags(country.title(), operator.gt)
 
     def __abstract_compare_flags(self, country, op):
         flag = self.flag_df["flag"].loc[country]
@@ -71,7 +71,7 @@ class FlagIdentifier:
         for c in self.flag_df.index:
             cur_flag = self.flag_df["flag"].loc[c]
             dist = self.ssim(flag, cur_flag)
-            
+
             if dist > max_ssim:
                 max_ssim = dist
                 max_index = c
@@ -99,7 +99,7 @@ class FlagIdentifier:
         max_index = 0
         for c in self.flag_df.index:
             cur_flag = self.flag_df["flag"].loc[c]
-            hash_dist = self.hash(Image.fromarray(flag), Image.fromarray(cur_flag))
+            hash_dist = self.hash(flag, cur_flag)
             
             if hash_dist < min_hash or min_hash == -1:
                 min_hash = hash_dist
