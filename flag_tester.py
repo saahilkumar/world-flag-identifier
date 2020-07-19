@@ -1,12 +1,14 @@
 from bs4 import BeautifulSoup
 import requests
 from string import ascii_lowercase
-from flag_identifier import FlagIdentifier
+# from flag_identifier import FlagIdentifier
+import flagpy as fp
 
 class FlagTester:
 
     def __init__(self):
-        self.identifier = FlagIdentifier()
+        # self.identifier = FlagIdentifier()
+        print("initializing tester")
 
     def test(self, test_website = "cia", method = "mse"):
         if test_website == "cia":
@@ -35,9 +37,9 @@ class FlagTester:
                     
     #             print(flag_country, flag_country in flag_df.index)
                 flag_img = flag.find("img").get("src").replace("..", "https://www.cia.gov/library/publications/the-world-factbook")
-                if flag_country in self.identifier.flag_df.index or "The " + flag_country in self.identifier.flag_df.index:
+                if flag_country in fp.get_country_list() or "The " + flag_country in fp.get_country_list():
                     num_total += 1
-                    identified_flag = self.identifier.identify(flag_img, method = identify_type)
+                    identified_flag = fp.identify(flag_img, method = identify_type)
                     if identified_flag == flag_country or identified_flag == "The " + flag_country:
                         num_correct+=1
 
@@ -64,9 +66,9 @@ class FlagTester:
                 flag_country = split[1] + " " + split[0]
 
             flag_img = "https://flagpedia.net/" + flag.find("img").get("src")
-            if flag_country in self.identifier.flag_df.index or "The " + flag_country in self.identifier.flag_df.index:
+            if flag_country in fp.get_country_list() or "The " + flag_country in fp.get_country_list():
                 num_total += 1
-                identified_flag = self.identifier.identify(flag_img, method = identify_type)
+                identified_flag = fp.identify(flag_img, method = identify_type)
                 if identified_flag == flag_country or identified_flag == "The " + flag_country:
                     num_correct+=1
 

@@ -3,6 +3,7 @@ import requests
 from io import BytesIO
 import numpy as np
 import pickle
+import os
 
 class FlagUtil:
 
@@ -75,7 +76,10 @@ class FlagUtil:
         return img
 
     def makeArray(self, npy_file):
-        with open(npy_file,'rb') as npy:
+        # with open(npy_file,'rb') as npy:
+        #     arr = pickle.load(npy)
+        #     return arr
+        with open(os.path.join(os.path.dirname(__file__), npy_file), 'rb') as npy:
             arr = pickle.load(npy)
             return arr
 

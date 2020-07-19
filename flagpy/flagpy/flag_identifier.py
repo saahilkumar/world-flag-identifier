@@ -3,32 +3,55 @@ from PIL import Image
 import numpy as np
 from skimage import measure
 import imagehash
-from flag_util import FlagUtil
+from .flag_util import FlagUtil
 import operator
+import os
 
 class FlagIdentifier:
 
     def __init__(self):
         self.util = FlagUtil()
         
-        self.flag_df = pd.read_csv("flag_df.csv", index_col = "country")
+        self.flag_df = pd.read_csv(os.path.join(os.path.dirname(__file__), "flag_df.csv"), index_col = "country")
         self.flag_df["flag"] = self.flag_df["flag"].apply(self.util.makeArray)
 
-    def display(self, country):
-        Image.fromarray(self.flag_df["flag"].loc[country.title()]).show()
+    def get_flag_df(self):
+        return self.flag_df.copy()
 
-    def mse(self, imageA, imageB):
+    def get_country_list(self):
+        return list(self.get_flag_df().index.values)
+
+    def display(self, country):
+        self.get_flag_img(country).show()
+
+    def get_flag_img(self, country):
+        return Image.fromarray(self.flag_df["flag"].loc[country.title()])
+
+    def flag_dist(self, countryA, countryB, method = "mse"):
+        flagA = self.flag_df["flag"].loc[countryA.title()]
+        flagB = self.flag_df["flag"].loc[countryB.title()]
+        if method == "mse":
+            return self.__mse(flagA, flagB)
+        elif method == "ssim":
+            return self.__ssim(flagA, flagB)
+        elif method == "hash":
+            return self.__hash(flagA, flagB)
+        else:
+            raise ValueError("method must be one of: mse, ssim, hash")
+
+    def __mse(self, imageA, imageB):
+        # credit to: https://www.pyimagesearch.com/2014/09/15/python-compare-two-images/
         err = np.sum((imageA.astype("float") - imageB.astype("float")) ** 2)
         err /= float(imageA.shape[0] * imageA.shape[1])
 
         return err
 
-    def hash(self, imageA, imageB):
+    def __hash(self, imageA, imageB):
         firsthash = imagehash.average_hash(Image.fromarray(imageA))
         otherhash = imagehash.average_hash(Image.fromarray(imageB))
         return firsthash - otherhash
 
-    def ssim(self, imageA, imageB):
+    def __ssim(self, imageA, imageB):
         return measure.compare_ssim(imageA, imageB, multichannel = True)
 
 
@@ -44,7 +67,7 @@ class FlagIdentifier:
         max_country = 0
         for c in self.flag_df.index:
             cur_flag = self.flag_df["flag"].loc[c]
-            dist = self.mse(flag, cur_flag)
+            dist = self.__mse(flag, cur_flag)
             if (op(dist, mse) or mse == -1) and c != country:
                 mse = dist
                 max_country = c
@@ -53,54 +76,25 @@ class FlagIdentifier:
 
     def identify(self, url, method = "mse"):
         if method == "mse":
-            return self.__identify_flag_mse(url)
+            return self.__abstract_identify(url, self.__mse, operator.lt)
         elif method == "ssim":
-            return self.__identify_flag_ssim(url)
+            return self.__abstract_identify(url, self.__ssim, operator.gt)
         elif method == "hash":
-            return self.__identify_flag_hash(url)
+            return self.__abstract_identify(url, self.__hash, operator.lt)
         else:
             raise ValueError("method must one of: mse, hash, ssim")
 
-    def __identify_flag_ssim(self, url):
+    def __abstract_identify(self, url, dist_func, op):
         flag = self.util.process_img(url)
         
-        max_ssim = -1
-        max_index = 0
+        best_dist = -1
+        closest_index = 0
         for c in self.flag_df.index:
             cur_flag = self.flag_df["flag"].loc[c]
-            dist = self.ssim(flag, cur_flag)
+            dist = dist_func(flag, cur_flag)
 
-            if dist > max_ssim:
-                max_ssim = dist
-                max_index = c
+            if op(dist, best_dist) or best_dist == -1:
+                best_dist = dist
+                closest_index = c
                 
-        return max_index
-
-    def __identify_flag_mse(self, url):
-        flag = self.util.process_img(url)
-        
-        min_mse = -1
-        max_index = 0
-        for c in self.flag_df.index:
-            cur_flag = self.flag_df["flag"].loc[c]
-            error = self.mse(flag, cur_flag)
-            if error < min_mse or min_mse == -1:
-                min_mse = error
-                max_index = c
-                
-        return max_index
-
-    def __identify_flag_hash(self, url):
-        flag = self.util.process_img(url)
-        
-        min_hash = -1
-        max_index = 0
-        for c in self.flag_df.index:
-            cur_flag = self.flag_df["flag"].loc[c]
-            hash_dist = self.hash(flag, cur_flag)
-            
-            if hash_dist < min_hash or min_hash == -1:
-                min_hash = hash_dist
-                max_index = c
-                
-        return max_index
+        return closest_index

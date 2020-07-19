@@ -1,0 +1,10 @@
+README.md
+setup.py
+flagpy/__init__.py
+flagpy/flag_gui.py
+flagpy/flag_identifier.py
+flagpy/flag_util.py
+flagpy.egg-info/PKG-INFO
+flagpy.egg-info/SOURCES.txt
+flagpy.egg-info/dependency_links.txt
+flagpy.egg-info/top_level.txt

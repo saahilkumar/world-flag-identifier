@@ -1,5 +1,5 @@
 import tkinter as tk
-from flag_identifier import FlagIdentifier
+from .flag_identifier import FlagIdentifier
 from PIL import Image, ImageTk
 
 HEIGHT = 600

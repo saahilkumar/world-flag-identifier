@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: flagpy
+Version: 0.0.1
+Summary: Country Flag Classifier.
+Home-page: https://github.com/saahilkumar/world-flag-identifier
+Author: Saahil Kumar
+Author-email: kumar.saa@northeastern.edu
+License: MIT
+Description: ### Example README
+Platform: UNKNOWN
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown

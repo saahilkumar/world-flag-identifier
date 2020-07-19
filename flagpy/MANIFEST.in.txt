@@ -1,0 +1,2 @@
+include flagpy/flag_df.csv
+include flagpy/flags/*.pkl
