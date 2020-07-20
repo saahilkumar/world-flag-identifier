@@ -8,6 +8,8 @@ import os
 class FlagUtil:
 
     def __init__(self):
+        # a dict for memoization
+        # speeds up the process of standardizing flag colors
         self.color_dict = {}
 
     def pickle_numpy(self, arr, country_filename):
@@ -25,6 +27,7 @@ class FlagUtil:
         return lst
 
     def find_nearest_color(self, color):
+        # if this color's been processed before, get its stored value
         if color in self.color_dict:
             return self.color_dict[color]
         
@@ -33,24 +36,26 @@ class FlagUtil:
         min_dist = 1000
         nearest_color = (0, 0, 0)
         for cur_col in web_safe:
+            # summing up the difference of red, green, and blue values of the two colors
             dist = sum(tuple(map(lambda i, j: abs(i - j), color, cur_col)))
             if dist < min_dist:
                 min_dist = dist
                 nearest_color = cur_col
                 
+        # adding the color to the dict for future use
         self.color_dict[color] = nearest_color
         return nearest_color
 
     def fix_image_color(self, img):
-        # Get the size of the image
         width, height = img.size
 
-        # Process every pixel
         for x in range(width):
             for y in range(height):
-                current_color = img.getpixel( (x,y) )
+                # get the current color of the pixel
+                # and replace it with the 'web safe' version
+                current_color = img.getpixel((x, y))
                 new_color = self.find_nearest_color(current_color)
-                img.putpixel( (x,y), new_color)
+                img.putpixel((x, y), new_color)
 
     def process_img(self, url):
         # getting the image from the url
@@ -76,9 +81,6 @@ class FlagUtil:
         return img
 
     def makeArray(self, npy_file):
-        # with open(npy_file,'rb') as npy:
-        #     arr = pickle.load(npy)
-        #     return arr
         with open(os.path.join(os.path.dirname(__file__), npy_file), 'rb') as npy:
             arr = pickle.load(npy)
             return arr

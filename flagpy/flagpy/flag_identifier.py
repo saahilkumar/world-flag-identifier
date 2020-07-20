@@ -12,7 +12,10 @@ class FlagIdentifier:
     def __init__(self):
         self.util = FlagUtil()
         
+        # reading in a df of file names which store numpy arrays
         self.flag_df = pd.read_csv(os.path.join(os.path.dirname(__file__), "flag_df.csv"), index_col = "country")
+
+        # converting the files to numpy arrays
         self.flag_df["flag"] = self.flag_df["flag"].apply(self.util.makeArray)
 
     def get_flag_df(self):
@@ -73,11 +76,9 @@ class FlagIdentifier:
             raise ValueError("method must be one of: mse, ssim, or hash")
 
     def __abstract_compare_flags(self, country, op, method):
-        # flag = self.flag_df["flag"].loc[country]
         best_dist = -1
         max_country = 0
         for c in self.flag_df.index:
-            # cur_flag = self.flag_df["flag"].loc[c]
             dist = self.flag_dist(country, c, method = method)
             if (op(dist, best_dist) or best_dist == -1) and c != country:
                 best_dist = dist
