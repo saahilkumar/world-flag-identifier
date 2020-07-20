@@ -35,7 +35,7 @@ class FlagIdentifier:
 
     def get_country_list(self):
         '''
-        Returns a list of all 206 current countries stored in this FlagIdentifier's DataFrame
+        Returns a list of all 195 current countries stored in this FlagIdentifier's DataFrame
 
         Return
         ------

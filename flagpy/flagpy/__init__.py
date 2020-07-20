@@ -108,7 +108,7 @@ def get_flag_df():
 
 def get_country_list():
     '''
-    Returns a list of all 206 country names.
+    Returns a list of all 195 country names.
 
     Returns
     -------

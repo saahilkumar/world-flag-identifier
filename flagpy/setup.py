@@ -6,7 +6,7 @@ def readme():
 
 setup(
     name = "flagpy",
-    version = "0.0.1",
+    version = "1.0.0",
     description = "Country Flag Classifier.",
     long_description = readme(),
     long_description_content_type = "text/markdown",
