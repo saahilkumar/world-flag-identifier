@@ -55,21 +55,32 @@ class FlagIdentifier:
         return measure.compare_ssim(imageA, imageB, multichannel = True)
 
 
-    def closest_flag(self, country):
-        return self.__abstract_compare_flags(country.title(), operator.lt)
+    def closest_flag(self, country, method = "mse"):
+        if method == "mse" or method == "hash":
+            return self.__abstract_compare_flags(country.title(), operator.lt, method)
+        elif method == "ssim":
+            return self.__abstract_compare_flags(country.title(), operator.gt, method)
+        else:
+            raise ValueError("method must be one of: mse, ssim, or hash")
 
-    def farthest_flag(self, country):
-        return self.__abstract_compare_flags(country.title(), operator.gt)
 
-    def __abstract_compare_flags(self, country, op):
-        flag = self.flag_df["flag"].loc[country]
-        mse = -1
+    def farthest_flag(self, country, method = "mse"):
+        if method == "mse" or method == "hash":
+            return self.__abstract_compare_flags(country.title(), operator.gt, method)
+        elif method == "ssim":
+            return self.__abstract_compare_flags(country.title(), operator.lt, method)
+        else:
+            raise ValueError("method must be one of: mse, ssim, or hash")
+
+    def __abstract_compare_flags(self, country, op, method):
+        # flag = self.flag_df["flag"].loc[country]
+        best_dist = -1
         max_country = 0
         for c in self.flag_df.index:
-            cur_flag = self.flag_df["flag"].loc[c]
-            dist = self.__mse(flag, cur_flag)
-            if (op(dist, mse) or mse == -1) and c != country:
-                mse = dist
+            # cur_flag = self.flag_df["flag"].loc[c]
+            dist = self.flag_dist(country, c, method = method)
+            if (op(dist, best_dist) or best_dist == -1) and c != country:
+                best_dist = dist
                 max_country = c
                 
         return max_country

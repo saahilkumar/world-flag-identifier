@@ -21,5 +21,12 @@ setup(
     license = "MIT",
     packages = ["flagpy"],
     package_data = {"": ["flag_df.csv", "flags/*.pkl"]},
-    include_package_data = True
+    include_package_data = True,
+    install_requires = [
+        "Pillow", 
+        "requests",
+        "numpy",
+        "pandas",
+        "ImageHash"
+    ]
 )
