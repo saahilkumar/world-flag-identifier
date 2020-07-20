@@ -136,5 +136,10 @@ def flag_dist(countryA, countryB, method = "mse"):
         similarity and a value of 0 means the two flags are identical. For ssim, higher values mean 
         higher similarity and the value must be between -1 and 1. A value of 1 for ssim
         means the two flags are identical.
+
+    Returns
+    -------
+    float
+        The distance between the two flags of the two given countries
     '''
     return id.flag_dist(countryA, countryB, method)
