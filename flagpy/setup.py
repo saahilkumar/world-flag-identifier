@@ -6,7 +6,7 @@ def readme():
 
 setup(
     name = "flagpy",
-    version = "1.0.0",
+    version = "1.0.2",
     description = "Country Flag Classifier.",
     long_description = readme(),
     long_description_content_type = "text/markdown",
@@ -27,6 +27,7 @@ setup(
         "requests",
         "numpy",
         "pandas",
-        "ImageHash"
+        "ImageHash",
+        "scikit-image"
     ]
 )

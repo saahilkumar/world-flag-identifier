@@ -1,7 +1,7 @@
 import pandas as pd
 from PIL import Image
 import numpy as np
-from skimage import measure
+from skimage import metrics
 import imagehash
 from .flag_util import FlagUtil
 import operator
@@ -172,7 +172,7 @@ class FlagIdentifier:
         float
             The structural similarity index measure (ssim) between the two given images
         '''
-        return measure.compare_ssim(imageA, imageB, multichannel = True)
+        return metrics.structural_similarity(imageA, imageB, multichannel=True)
 
 
     def closest_flag(self, country, method = "mse"):

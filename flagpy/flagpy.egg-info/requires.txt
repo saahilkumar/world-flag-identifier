@@ -3,3 +3,4 @@ requests
 numpy
 pandas
 ImageHash
+scikit-image
