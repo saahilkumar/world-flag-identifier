@@ -10,37 +10,65 @@ root.title("Flag Visualizer")
 flag_df = fp.get_flag_df()
 
 def closest_flag(flag_left):
+    '''
+    Sets the right flag to the flag that is most similar to the given flag.
+
+    Parameters
+    ----------
+    flag_left : str
+        The name of the country whose flag is being displayed on the left
+    '''
     chosen_flag_right.set(fp.closest_flag(flag_left))
 
 def farthest_flag(flag_left):
+    '''
+    Sets the right flag to the flag that is least similar to the given flag.
+
+    Parameters
+    ----------
+    flag_left : str
+        The name of the country whose flag is being displayed on the left
+    '''
     chosen_flag_right.set(fp.farthest_flag(flag_left))
 
 def swap():
+    '''
+    Swaps the left and right flags.
+    '''
     temp = chosen_flag_left.get()
     chosen_flag_left.set(chosen_flag_right.get())
     chosen_flag_right.set(temp)
 
-def resize():
+def update_flags():
+    '''
+    Updates the size and value of the two flags. This function is called every
+    10 milliseconds to ensure that the flags are always updated.
+    '''
+    # setting the width/height of the flags based on the dimensions of the canvas itself
     flag_width = int(min(frame.winfo_width(), frame.winfo_height()) / 2.5)
     flag_height = int(flag_width / 2)
 
+    # updating size/image of the left flag
     img_left = Image.fromarray(flag_df["flag"].loc[chosen_flag_left.get()])
     img_left = img_left.resize((flag_width, flag_height), Image.ANTIALIAS)
     flag_img_left = ImageTk.PhotoImage(image = img_left)
     flag_left.configure(image=flag_img_left)
     flag_left.image = flag_img_left
 
+    # updating size/image of the right flag
     img_right = Image.fromarray(flag_df["flag"].loc[chosen_flag_right.get()])
     img_right = img_right.resize((flag_width, flag_height), Image.ANTIALIAS)
     flag_img_right = ImageTk.PhotoImage(image = img_right)
     flag_right.configure(image=flag_img_right)
     flag_right.image = flag_img_right
 
+    # updating the "distance" label
     dist = int(fp.flag_dist(chosen_flag_left.get(), chosen_flag_right.get()))
     dist_label.configure(text = "mse: " + str(dist))
     dist_label.text = "mse: " + str(dist)
 
-    root.after(10, resize)
+    # rerunning this method every 10 milliseconds
+    root.after(10, update_flags)
 
 # the canvas
 canvas = tk.Canvas(root, height = HEIGHT, width = WIDTH)
@@ -99,7 +127,7 @@ button2.place(relx = 0.2, rely = 0.9, relwidth = 0.2, relheight = 0.1)
 swap_button = tk.Button(frame, text = "<-->", command = lambda: swap())
 swap_button.place(relx = 0.5, rely = 0.6, relwidth = 0.2, anchor = "center")
 
-# calling method to resize the flags
-resize()
+# calling method to update the flags
+update_flags()
 
 root.mainloop()
