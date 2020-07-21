@@ -2,3 +2,4 @@
 __pycache__/
 flagpy/build/
 flagpy/dist/
+flagpy/flagpy.egg-info
